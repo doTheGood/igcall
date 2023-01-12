@@ -2,6 +2,7 @@ import { Heading, Text } from '@pal-land/react'
 import Image from 'next/image'
 import { Container, Hero, Preview } from './styles'
 import previewImage from '../../assets/app-preview.png'
+import { ClaimUsernameForm } from './components/ClaimUserNameForm'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Text size="xl">
           Connect your calender and allow people to schedule meetings with you.
         </Text>
+        <ClaimUsernameForm />
       </Hero>
       <Preview>
         <Image
