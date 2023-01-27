@@ -2,8 +2,10 @@ import { Button, Heading, MultiStep, Text } from '@pal-land/react'
 import { ArrowRight, LineSegment } from 'phosphor-react'
 import { Container, Header } from '../styles'
 import { ConnectBox, ConnectItem } from './styles'
+import { signIn, useSession } from 'next-auth/react'
 
 export default function Register() {
+  // const session = useSession()
   // async function handleRegister() {}
 
   return (
@@ -19,11 +21,16 @@ export default function Register() {
       <ConnectBox>
         <ConnectItem>
           <Text>Google Calender</Text>
-          <Button variant="secondary" size="sm">
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => signIn('google')}
+          >
             Connect your Google Account
             <LineSegment weight="bold" />
           </Button>
         </ConnectItem>
+        {/* <Text>{JSON.stringify(session.data)}</Text> */}
         <Button type="submit">
           Next step
           <ArrowRight />
