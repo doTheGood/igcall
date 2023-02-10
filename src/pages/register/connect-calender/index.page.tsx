@@ -2,7 +2,7 @@ import { Button, Heading, MultiStep, Text } from '@pal-land/react'
 import { ArrowRight, LineSegment } from 'phosphor-react'
 import { Container, Header } from '../styles'
 import { ConnectBox, ConnectItem } from './styles'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 export default function Register() {
   // const session = useSession()
