@@ -1,4 +1,4 @@
-import { Box, styled } from '@pal-land/react'
+import { Text, Box, styled } from '@pal-land/react'
 
 export const ConnectBox = styled(Box, {
   marginTop: '$6',
@@ -16,4 +16,9 @@ export const ConnectItem = styled('div', {
   borderRadius: '$md',
 
   marginBottom: '$2',
+})
+
+export const AuthError = styled(Text, {
+  color: '$red',
+  marginBottom: '$4',
 })

@@ -2,5 +2,6 @@
   "cSpell.ignoreWords": [
     "callpal",
     "igcall"
-  ]
+  ],
+  "svg.preview.background": "white"
 }

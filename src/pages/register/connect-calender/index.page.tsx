@@ -1,11 +1,20 @@
 import { Button, Heading, MultiStep, Text } from '@pal-land/react'
-import { ArrowRight, LineSegment } from 'phosphor-react'
+import { ArrowRight, Check, LineSegment } from 'phosphor-react'
 import { Container, Header } from '../styles'
-import { ConnectBox, ConnectItem } from './styles'
-import { signIn } from 'next-auth/react'
+import { AuthError, ConnectBox, ConnectItem } from './styles'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 export default function Register() {
-  // const session = useSession()
+  const session = useSession()
+  const router = useRouter()
+  const hasAuthError = !!router.query.error
+
+  const isSignedIn = session.status === 'authenticated'
+
+  async function handleConnectGoogleCalendar() {
+    await signIn('google')
+  }
   // async function handleRegister() {}
 
   return (
@@ -21,17 +30,29 @@ export default function Register() {
       <ConnectBox>
         <ConnectItem>
           <Text>Google Calender</Text>
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => signIn('google')}
-          >
-            Connect your Google Account
-            <LineSegment weight="bold" />
-          </Button>
+          {isSignedIn ? (
+            <Button variant="secondary" size="sm" disabled>
+              Connected
+              <Check />
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={handleConnectGoogleCalendar}
+            >
+              Connect your Google Account
+              <LineSegment weight="bold" />
+            </Button>
+          )}
         </ConnectItem>
-        {/* <Text>{JSON.stringify(session.data)}</Text> */}
-        <Button type="submit">
+        {hasAuthError && (
+          <AuthError size="sm">
+            Error to connect with Google Account. Please check if you allowed
+            the iCall App to access your Calendar.
+          </AuthError>
+        )}
+        <Button type="submit" disabled={!isSignedIn}>
           Next step
           <ArrowRight />
         </Button>
